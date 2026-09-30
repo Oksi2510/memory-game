@@ -6,4 +6,5 @@ const gameBoard = new GameBoard();
 
 document.body.append(header.getHtmlElement());
 document.body.append(gameBoard.getHtmlElement());
+gameBoard.generateBoard(gameBoard.getHtmlElement())
 

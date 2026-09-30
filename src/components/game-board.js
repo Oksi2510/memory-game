@@ -1,5 +1,6 @@
 import ElementHtml from "../utils/create-element.js";
 import cardValues from "../data/card-values.js";
+import Card from "../components/card.js";
 
 export default class GameBoard extends ElementHtml {
   constructor() {
@@ -15,7 +16,11 @@ export default class GameBoard extends ElementHtml {
     }
     return cardArr;
   };
-  generateBoard(parent, card) {
-    //todo берёт перемешанный массив → создаёт 16 Card → добавляет их в parent
+  generateBoard(parent) {
+    this.newCardArr(cardValues).forEach((cardValue) => {
+      const newCard = new Card();
+      newCard.setTextContent(`${cardValue}`);
+      parent.append(newCard.getHtmlElement());
+    });
   }
 }
