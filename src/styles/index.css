@@ -1,0 +1,122 @@
+body {
+  position: relative;
+}
+
+.victory-block {
+  width: 70%;
+  height: 60vh;
+  border: solid 3px black;
+  background-color: #e8dd9e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 15px;
+}
+
+.victory-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  z-index: 2;
+  background-color: rgba(95, 158, 160, 0.271);
+}
+
+.header {
+  background-color: bisque;
+  height: 4rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.btn {
+  padding: 0 0.5rem;
+  border-radius: 5px;
+  height: 2rem;
+  display: block;
+  border: solid 1px black;
+}
+
+.game-board {
+  max-width: 800px;
+  padding: 1rem 0;
+  justify-content: center;
+  gap: 30px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 10%);
+}
+
+.card {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  opacity: 0;
+  transition:
+    width 0.4s linear,
+    opacity 0.4s linear;
+}
+
+.card-front,
+.card-back {
+  border-radius: 50%;
+  border: dashed 5px rgb(194 186 139);
+  background: linear-gradient(45deg, gold, #e8dd9e, gold);
+
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  transition: transform 0.4s linear;
+}
+
+.card-front {
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.card-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #ab9310, #e8dd9e, #ab9310);
+  transform: perspective(600px) rotateY(180deg);
+}
+
+.card.opened>.card-front {
+  transform: perspective(600px) rotateY(-180deg);
+}
+
+.card.opened>.card-back {
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.card:not(.opened):hover .card-front {
+  transform: perspective(600px) rotateY(0deg) translateY(-10px);
+}
+
+.card:not(.opened):hover::after {
+  width: 70%;
+  height: 1px;
+  opacity: 1;
+  box-shadow: 0 10px 7px black;
+}
