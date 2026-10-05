@@ -28,4 +28,14 @@ export default class GameBoard extends ElementHtml {
       parent.append(newCard.getHtmlElement());
     });
   }
+  removeBoard(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
+  updateBoard(parent) {
+    localStorage.removeItem("cards");
+    this.removeBoard(parent);
+    this.generateBoard(parent);
+  }
 }

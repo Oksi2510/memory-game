@@ -2,7 +2,7 @@ export default class ElementHtml {
   constructor(tag, className, textContent) {
     this.htmlElement = document.createElement(tag);
     this.setClasses(className);
-    this.setTextContent(textContent ?? '');
+    this.setTextContent(textContent ?? "");
   }
 
   getHtmlElement() {
@@ -35,5 +35,12 @@ export default class ElementHtml {
 
   setTextContent(textContent) {
     this.htmlElement.textContent = textContent;
+  }
+
+  addEventListener(event, callback) {
+    this.htmlElement.addEventListener(event, callback);
+  }
+  removeEventListener(event, callback) {
+    this.htmlElement.removeEventListener(event, callback);
   }
 }

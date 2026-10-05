@@ -21,3 +21,7 @@ header.appendChildNode(leaderBBoard);
 document.body.append(gameBoard.getHtmlElement());
 gameBoard.generateBoard(gameBoard.getHtmlElement());
 timer.startTimer();
+newGameBtn.addEventListener("click", () => {
+  newGameBtn.newGame(stepsCounter, timer);
+  gameBoard.updateBoard(gameBoard.getHtmlElement());
+});
