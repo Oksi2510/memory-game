@@ -3,7 +3,6 @@ import ElementHtml from "../utils/create-element.js";
 export default class Timer extends ElementHtml {
   constructor() {
     super("div", "timer", "00:00");
-    this.startTime = Number(localStorage.getItem("startTime")) || 0;
     this.isRunning = false;
     this.timerInterval = null;
   }
@@ -21,7 +20,6 @@ export default class Timer extends ElementHtml {
     if (this.isRunning) return;
     if (!this.startTime) {
       this.startTime = Date.now();
-      localStorage.setItem("startTime", this.startTime);
     }
     this.isRunning = true;
     this.timerInterval = setInterval(() => {
@@ -39,7 +37,6 @@ export default class Timer extends ElementHtml {
   resetTimer() {
     this.stopTimer();
     this.startTime = 0;
-    localStorage.removeItem("startTime");
     this.setTextContent("00:00");
   }
 }
