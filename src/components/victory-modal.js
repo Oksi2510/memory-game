@@ -1,25 +1,20 @@
 import ElementHtml from "../utils/create-element.js";
+import NewGameBtn from "./new-game-btn.js";
 
 export default class VictoryModal extends ElementHtml {
-  constructor(stepsCounter, timer) {
+  constructor(stepsCounter, timer, onNewGame) {
     super("div", "victory-wrapper");
-    this.stepsCounter = stepsCounter;
-    this.timer = timer;
+    this.stepsCounter = stepsCounter.getHtmlElement().textContent;
+    this.timer = timer.getHtmlElement().textContent;
     this.content = new ElementHtml(
       "div",
       "victory-content",
-      "Congratulation! You Win!",
+      `YOU WIN ${this.stepsCounter}, time: ${this.timer}`,
     );
-    this.closeBtn = new ElementHtml(
-      "button",
-      ["btn", "victory-content"],
-      "close",
-    );
+    this.newGameBtn = new NewGameBtn(onNewGame);
     this.victoryBlock = new ElementHtml("div", "victory-block");
     this.appendChildNode(this.victoryBlock);
     this.victoryBlock.appendChildNode(this.content);
-    this.victoryBlock.appendChildNode(this.stepsCounter);
-    this.victoryBlock.appendChildNode(this.timer);
-    this.victoryBlock.appendChildNode(this.closeBtn);
+    this.victoryBlock.appendChildNode(this.newGameBtn);
   }
 }

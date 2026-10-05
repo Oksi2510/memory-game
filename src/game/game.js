@@ -5,7 +5,7 @@ export default class Game {
     this.gameBoard = gameBoard;
     this.timer = timer;
     this.stepsCounter = stepsCounter;
-    this.openedCards = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+    this.openedCards = [];
     this.selectedCards = [];
   }
 
@@ -56,9 +56,21 @@ export default class Game {
 
   checkWin() {
     if (this.openedCards.length === 16) {
-      let victory = new VictoryModal(this.stepsCounter, this.timer);
+      const victory = new VictoryModal(this.stepsCounter, this.timer, () => {
+        victory.removeHtmlElement();
+        this.resetGame();
+      });
+
       document.body.append(victory.getHtmlElement());
       this.timer.stopTimer();
     }
+  }
+  resetGame() {
+    this.openedCards = [];
+    this.selectedCards = [];
+    this.stepsCounter.removeSteps();
+    this.timer.resetTimer();
+    this.gameBoard.updateBoard(this.gameBoard.getHtmlElement());
+    this.timer.startTimer();
   }
 }
