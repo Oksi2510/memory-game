@@ -23,6 +23,7 @@ export default class Game {
   }
 
   handleGame() {
+    this.stepsCounter.addStep();
     let isMatched = this.compareCards(
       this.selectedCards[0],
       this.selectedCards[1],
@@ -40,6 +41,7 @@ export default class Game {
     if (boolean) {
       this.openedCards.push(...this.selectedCards);
       this.selectedCards = [];
+      this.checkWin();
     } else this.handleMismatch();
   }
 
@@ -50,5 +52,7 @@ export default class Game {
     }, 1000);
   }
 
-  checkWin() {}
+  checkWin() {
+    if (this.openedCards.length === 16) return true;
+  }
 }
