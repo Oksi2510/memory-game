@@ -4,16 +4,21 @@ import Card from "../components/card.js";
 
 export default class GameBoard extends ElementHtml {
   constructor() {
-    super("div", "game-board", "GameBoard");
+    super("div", "game-board");
   }
   newCardArr = (cardValues) => {
     if (!Array.isArray(cardValues)) return;
+    const saved = localStorage.getItem("cards");
+    if (saved) {
+      return JSON.parse(saved);
+    }
     const cardArr = [...cardValues, ...cardValues];
 
     for (let i = cardArr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [cardArr[i], cardArr[j]] = [cardArr[j], cardArr[i]];
     }
+    localStorage.setItem("cards", JSON.stringify(cardArr));
     return cardArr;
   };
   generateBoard(parent) {
