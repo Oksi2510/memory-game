@@ -1,7 +1,7 @@
 import ElementHtml from "../utils/create-element.js";
 import cardValues from "../data/card-values.js";
 import Card from "../components/card.js";
-import Game from "../game/game.js";
+
 
 export default class GameBoard extends ElementHtml {
   constructor() {

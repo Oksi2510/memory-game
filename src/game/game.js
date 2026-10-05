@@ -1,9 +1,11 @@
+import VictoryModal from "../components/victory-modal.js";
+
 export default class Game {
   constructor(gameBoard, timer, stepsCounter) {
     this.gameBoard = gameBoard;
     this.timer = timer;
     this.stepsCounter = stepsCounter;
-    this.openedCards = [];
+    this.openedCards = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
     this.selectedCards = [];
   }
 
@@ -53,6 +55,10 @@ export default class Game {
   }
 
   checkWin() {
-    if (this.openedCards.length === 16) return true;
+    if (this.openedCards.length === 16) {
+      let victory = new VictoryModal(this.stepsCounter, this.timer);
+      document.body.append(victory.getHtmlElement());
+      this.timer.stopTimer();
+    }
   }
 }

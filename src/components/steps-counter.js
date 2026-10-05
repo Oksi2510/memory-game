@@ -2,7 +2,7 @@ import ElementHtml from "../utils/create-element.js";
 
 export default class StepsCounter extends ElementHtml {
   constructor() {
-    super("div", "steps", "steps: ");
+    super("div", "steps", "steps: 0");
     let steps = localStorage.getItem("steps");
 
     if (steps) {
