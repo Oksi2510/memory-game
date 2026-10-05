@@ -5,6 +5,11 @@ import Card from "../components/card.js";
 export default class GameBoard extends ElementHtml {
   constructor() {
     super("div", "game-board");
+    this.addEventListener("click", (event) => {
+      const card = event.target.closest(".card");
+      if (!card) return;
+      card.classList.add("opened");
+    });
   }
   newCardArr = (cardValues) => {
     if (!Array.isArray(cardValues)) return;
