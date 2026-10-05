@@ -23,8 +23,7 @@ export default class GameBoard extends ElementHtml {
   };
   generateBoard(parent) {
     this.newCardArr(cardValues).forEach((cardValue) => {
-      const newCard = new Card();
-      newCard.setTextContent(`${cardValue}`);
+      const newCard = new Card(cardValue);
       parent.append(newCard.getHtmlElement());
     });
   }
