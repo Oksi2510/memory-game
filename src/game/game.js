@@ -12,6 +12,7 @@ export default class Game {
       const card = event.target.closest(".card");
       if (!card) return;
       if (card.classList.contains("opened")) return;
+      if (this.selectedCards.length === 2) return;
       card.classList.add("opened");
 
       this.selectedCards.push(card);
